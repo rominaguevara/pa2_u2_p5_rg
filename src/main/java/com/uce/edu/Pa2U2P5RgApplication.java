@@ -35,7 +35,7 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		ciud1.setNombre("Romina");
 		ciud1.setApellido("Guevara");
 		
-		//this.iciudadanoService.guardar(ciud1);
+		this.iciudadanoService.guardar(ciud1);
 		
 		Empleado empl1 = new Empleado();
 		empl1.setFechaIngreso(LocalDateTime.now());
@@ -47,6 +47,7 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		empl1.setCiudadano(ciud2);
 		
 		this.iEmpleadoService.guardar(empl1);
+		
 	}
 
 }

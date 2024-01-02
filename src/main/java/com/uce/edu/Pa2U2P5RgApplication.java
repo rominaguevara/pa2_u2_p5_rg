@@ -47,6 +47,7 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		empl1.setCiudadano(ciud2);
 		
 		this.iEmpleadoService.guardar(empl1);
+		//02/01
 	}
 
 }

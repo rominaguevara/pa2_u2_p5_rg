@@ -1,25 +1,22 @@
 package com.uce.edu;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.service.ICiudadanoService;
-import com.uce.edu.service.IEmpleadoService;
+import com.uce.edu.repository.modelo.Habitacion;
+import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.service.IHotelService;
 
 @SpringBootApplication
 public class Pa2U2P5RgApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoService iciudadanoService;
-
-	@Autowired
-	private IEmpleadoService iEmpleadoService;
+	private IHotelService hotelService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RgApplication.class, args);
@@ -29,21 +26,28 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Empleado empleadoDos = new Empleado();
+		Hotel hotel = new Hotel();
+		hotel.setDireccion("Colon");
+		hotel.setNombre("Marriot");
 		
-		empleadoDos.setFechaIngreso(LocalDateTime.now());
+		Habitacion h1 = new Habitacion();
+		h1.setClase("Economica");
+		h1.setNumero("A1");
+		h1.setHotel(hotel);
 		
-		Ciudadano ciudadanoDos = new Ciudadano();
 		
-		ciudadanoDos.setNombre("Cecilia");
-		ciudadanoDos.setApellido("Arcos");
-				
-		ciudadanoDos.setEmpleado(empleadoDos);
+		Habitacion h2 = new Habitacion();
+		h2.setClase("Presidencial");
+		h2.setNumero("A2");
+		h2.setHotel(hotel);
 		
-		empleadoDos.setCiudadano(ciudadanoDos);
+		List<Habitacion> habitaciones = new ArrayList<>();
+		habitaciones.add(h1);
+		habitaciones.add(h2);
 		
-		this.iciudadanoService.guardar(ciudadanoDos);
-
+		hotel.setHabitaciones(habitaciones);
+		
+		this.hotelService.guardar(hotel);
 	}
 
 }

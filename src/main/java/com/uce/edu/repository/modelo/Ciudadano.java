@@ -1,5 +1,6 @@
 package com.uce.edu.repository.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Ciudadano {
 	@Column(name = "ciud_apellido")
 	private String apellido;
 
-	@OneToOne(mappedBy = "ciudadano")//este empleado se va a mapear con ciudadano (ciudadano es el nnmbre del atributo que tengo en la otra entidad) 
+	@OneToOne(mappedBy = "ciudadano", cascade = CascadeType.ALL)//este empleado se va a mapear con ciudadano (ciudadano es el nnmbre del atributo que tengo en la otra entidad) 
 	private Empleado empleado;// esto está mostrando que un ciudadano tiene un empleado
 
 	// GETTERS y SETTERS

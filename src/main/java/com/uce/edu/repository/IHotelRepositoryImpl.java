@@ -21,4 +21,23 @@ public class IHotelRepositoryImpl implements IHotelRepository {
 		this.entityManager.persist(hotel);
 	}
 
+	@Override
+	public Hotel seleccionar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.entityManager.find(Hotel.class, id);
+	}
+
+	@Override
+	public void actualizar(Hotel hotel) {
+		// TODO Auto-generated method stub
+		this.entityManager.merge(hotel);
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		// TODO Auto-generated method stub
+		Hotel hote = this.seleccionar(id);
+		this.entityManager.remove(hote);
+	}
+
 }

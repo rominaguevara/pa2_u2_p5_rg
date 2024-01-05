@@ -2,42 +2,41 @@ package com.uce.edu.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Empleado;
-
+import com.uce.edu.repository.modelo.Habitacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class EmpleadoRepositoryImpl implements IEmpleadoRepository {
+public class HabitacionRepositoryImpl implements IHabitacionRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public void insertar(Empleado empleado) {
+	public void insertar(Habitacion habitacion) {
 		// TODO Auto-generated method stub
-		this.entityManager.persist(empleado);
+		this.entityManager.persist(habitacion);
 	}
 
 	@Override
-	public Empleado seleccionar(Integer id) {
+	public Habitacion seleccionar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(Empleado.class, id);
+		return this.entityManager.find(Habitacion.class, id);
 	}
 
 	@Override
-	public void actualizar(Empleado empleado) {
+	public void actualizar(Habitacion habitacion) {
 		// TODO Auto-generated method stub
-		this.entityManager.merge(empleado);
+		this.entityManager.merge(habitacion);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		Empleado empl = this.seleccionar(id);
-		this.entityManager.remove(empl);
+		Habitacion habi = this.seleccionar(id);
+		this.entityManager.remove(habi);
 	}
 
 }

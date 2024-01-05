@@ -41,14 +41,14 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		emple1.setFechaIngreso(LocalDateTime.now());
 		emple1.setSalario(new BigDecimal(2000));
 		
-		Ciudadano ciuda2 =this.iciudadanoService.buscar(31); 
+		Ciudadano ciuda2 =this.iciudadanoService.buscar(36); 
 		
 		emple1.setCiudadano(ciuda2);
 		
 		this.iEmpleadoService.guardar(emple1);
 		
 		
-		this.iciudadanoService.eliminar(25);
+		this.iciudadanoService.eliminar(28);
 		
 		ciuda1.setApellido("Guevara Gaunuchi");
 		this.iciudadanoService.actualizar(ciuda1);
@@ -58,7 +58,7 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		
 		this.iEmpleadoService.buscar(2);
 		
-		this.iEmpleadoService.eliminar(19);
+		this.iEmpleadoService.eliminar(23);
 		
 	}
 

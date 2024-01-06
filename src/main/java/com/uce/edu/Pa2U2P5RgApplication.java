@@ -1,26 +1,25 @@
 package com.uce.edu;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IHabitacionService;
-import com.uce.edu.service.IHotelService;
+import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.ILibroService;
+
 
 @SpringBootApplication
 public class Pa2U2P5RgApplication implements CommandLineRunner {
 
 	@Autowired
-	private IHotelService hotelService;
+	private ILibroService libroService;
 	
-	@Autowired
-	private IHabitacionService habitacionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RgApplication.class, args);
@@ -30,43 +29,35 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Hotel hotel = new Hotel();
-		hotel.setDireccion("Colon");
-		hotel.setNombre("Marriot");
-		
-		Habitacion h1 = new Habitacion();
-		h1.setClase("Economica");
-		h1.setNumero("A1");
-		h1.setHotel(hotel);
+		Libro libro1 = new Libro();
+		libro1.setTitulo("20 mil leguas de viaje submarino");
+		libro1.setFechaPublicacion(LocalDateTime.now());
 		
 		
-		Habitacion h2 = new Habitacion();
-		h2.setClase("Presidencial");
-		h2.setNumero("A2");
-		h2.setHotel(hotel);
+		Autor au1 = new Autor();
+		au1.setNombre("Julio Verne");
+		au1.setNacionalidad("Alemano");
 		
-		List<Habitacion> habitaciones = new ArrayList<>();
-		habitaciones.add(h1);
-		habitaciones.add(h2);
 		
-		hotel.setHabitaciones(habitaciones);
+		Autor au2 = new Autor();
+		au2.setNombre("Maria Fernanda Heredia");
+		au2.setNacionalidad("Ecuatoriano");
 		
-		this.hotelService.guardar(hotel);
 		
-		Hotel hot = this.hotelService.buscar(2);
-		System.out.println(hot);
+		Set<Autor> autores = new HashSet<Autor>();
+		autores.add(au1);
+		autores.add(au2);
 		
-		Habitacion hab = this.habitacionService.buscar(6);
-		System.out.println(hab);
+		libro1.setAutores(autores);
 		
-		hotel.setNombre("Hilton");
-		this.hotelService.actualizar(hotel);
+		Set<Libro> libros = new HashSet<Libro>();
+		libros.add(libro1);
 		
-		h1.setClase("Economica-Simple");
-		this.habitacionService.actualizar(h1);
+		au1.setLibros(libros);
+		au2.setLibros(libros);
 		
-		this.habitacionService.eliminar(8);
-		this.hotelService.eliminar(2);
+		this.libroService.guardar(libro1);
+			
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.repository.modelo.Autor;
 import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.IAutorService;
 import com.uce.edu.service.ILibroService;
 
 
@@ -19,6 +20,9 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 
 	@Autowired
 	private ILibroService libroService;
+	
+	@Autowired
+	private IAutorService autorService;
 	
 
 	public static void main(String[] args) {
@@ -29,8 +33,9 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
+		//LIBRO CON VARIOS AUTORES
 		Libro libro1 = new Libro();
-		libro1.setTitulo("20 mil leguas de viaje submarino");
+		libro1.setTitulo("Foto Estudio Corazon");
 		libro1.setFechaPublicacion(LocalDateTime.now());
 		
 		
@@ -40,7 +45,7 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		
 		
 		Autor au2 = new Autor();
-		au2.setNombre("Maria Fernanda Heredia");
+		au2.setNombre("Maria Heredia");
 		au2.setNacionalidad("Ecuatoriano");
 		
 		
@@ -57,7 +62,43 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		au2.setLibros(libros);
 		
 		this.libroService.guardar(libro1);
-			
+				
+		au1.setNombre("Maria Fernanda Heredia");
+		this.autorService.actualizar(au1);
+		
+		this.autorService.buscar(1);
+		
+		this.autorService.eliminar(3);
+		
+		//AUTOR CON VARIOS LIBROS
+		Autor autor3 = new Autor();
+		autor3.setNombre("Julio Verne");
+		autor3.setNacionalidad("Francia");
+		
+		Libro libro2 = new Libro();
+		libro2.setTitulo("20 mil leguas de Viaje Submarino");
+		libro2.setFechaPublicacion(LocalDateTime.of(1869, 03, 20, 0, 0));
+		
+		Libro libro3 = new Libro();
+		libro3.setTitulo("Viaje al centro de la Tierra");
+		libro3.setFechaPublicacion(LocalDateTime.of(1864, 11, 25, 0, 0));
+		
+		autores.add(autor3);
+		libros.add(libro2);
+		libros.add(libro3);
+		
+		this.autorService.guardar(autor3);
+		
+		autor3.setNombre("Jules Gabriel Verne");
+		this.autorService.actualizar(autor3);
+		
+		this.autorService.buscar(4);
+		
+		this.autorService.eliminar(6);
+		
+		
+		
+		
 	}
 
 }

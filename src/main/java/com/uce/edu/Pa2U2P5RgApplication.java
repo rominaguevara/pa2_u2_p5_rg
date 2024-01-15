@@ -62,9 +62,9 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 
 		libro.setAutoresLibros(lista);
 
-		this.libroService.guardar(libro);
+		//this.libroService.guardar(libro);
 
-		Libro libroBusqueda= this.libroService.buscarPorNombre("Foto");
+		Libro libroBusqueda= this.libroService.buscarPorNombre("20 mil leguas de viaje submarino");
 		System.out.println(libroBusqueda);
 	}
 

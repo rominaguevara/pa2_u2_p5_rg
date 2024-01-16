@@ -12,19 +12,21 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class AutorRepositoryImpl implements IAutorRepository {
 
+
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Override
-	public void insertar(Autor autor) {
-		// TODO Auto-generated method stub
-		this.entityManager.persist(autor);
-	}
-
+	
 	@Override
 	public Autor seleccionar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.entityManager.find(Autor.class, id);
+	}
+
+	@Override
+	public void insertar(Autor autor) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(autor);
 	}
 
 	@Override

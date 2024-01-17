@@ -33,6 +33,11 @@ public class Empleado {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "empl_id_ciudadano") // el nombre de esto será el nombre de la nueva columna donde se almacenara la pk de la tabla master
 	private Ciudadano ciudadano; // esto representa que un empleado tiene un ciudadano
+	
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + "]";
+	}
 
 	// GETTERS y SETTERS
 	public Integer getId() {

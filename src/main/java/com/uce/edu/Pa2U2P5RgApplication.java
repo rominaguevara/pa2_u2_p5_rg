@@ -1,16 +1,17 @@
 package com.uce.edu;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Libro;
-import com.uce.edu.service.IAutorService;
-import com.uce.edu.service.ILibroService;
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
+import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.service.IEmpleadoService;
 
 @SpringBootApplication
 public class Pa2U2P5RgApplication implements CommandLineRunner {
@@ -23,14 +24,16 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	// Declarar de una manera centralizada el query y se va a reutilizar desde las
 	// diferentes partes que se necesita a traves de un nombre
 	//
-	// Native
-	// Criteria API
+	// 2.Native (es usar el SQLnativo del SQL, el mismo que ejecuto en la base de datos)
+	//	este uso cuando quiero que el rendimiento prevalesca ante la orientación a objetos
+	// 3.Criteria API
 
 	@Autowired
-	private ILibroService iLibroService;
-
+	private ICiudadanoService ciudadanoService;
+	
 	@Autowired
-	private IAutorService autorService;
+	private IEmpleadoService empleadoService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RgApplication.class, args);
@@ -39,33 +42,12 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+	
+		Empleado empl = this.ciudadanoService.buscarPorCedula("1750888404");
+		System.out.println(empl);
 
-		System.out.println("Query");
+		Ciudadano ciudadano = this.ciudadanoService.bucarPorCedulaCiu("1750888404");
+		System.out.println(ciudadano);
 		
-		List<Libro> lista = this.iLibroService.buscarPorFechaPublicacion(LocalDateTime.of(2024, 1,1,0,0));
-		
-		for(Libro libro : lista) {
-			System.out.println(libro);
-		}
-		System.out.println("TypedQuery");
-		
-		Libro li1 = this.iLibroService.buscarPorTitulo("Programacion ");
-		System.out.println(li1);
-		
-		List<Libro> lista1 = this.iLibroService.buscarPorFecha(LocalDateTime.of(2024, 1,2,0,0));
-		for(Libro libro : lista1) {
-			System.out.println(libro);
-		}
-		
-		System.out.println("NamedQuery");
-		
-		Libro li2 = this.iLibroService.buscarPorTituloNamed("Programacion Web");
-		
-		System.out.println(li2);
-		
-		List<Libro> lista2 =this.iLibroService.buscarPorFechaNamed(LocalDateTime.of(2024, 1,1,0,0));
-		for(Libro libro : lista2) {
-			System.out.println(libro);
-		}
 	}
 }

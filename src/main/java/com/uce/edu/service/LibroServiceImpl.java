@@ -82,4 +82,16 @@ public class LibroServiceImpl implements ILibroService {
 		return this.iLibroRepository.seleccionarPorFechaNamed(fechaPublicacion);
 	}
 
+	@Override
+	public Libro buscarEditorial(String editorial) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.seleccionarEditorial(editorial);
+	}
+
+	@Override
+	public Libro buscarEdicion(Integer edicion) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.seleccionarEdicion(edicion);
+	}
+
 }

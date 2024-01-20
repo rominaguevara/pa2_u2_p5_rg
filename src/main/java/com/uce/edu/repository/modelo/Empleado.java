@@ -29,14 +29,21 @@ public class Empleado {
 
 	@Column(name = "empl_fecha_ingreso")
 	private LocalDateTime fechaIngreso;
+	
+	@Column(name = "empl_puesto")
+	private String puesto;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "empl_id_ciudadano") // el nombre de esto será el nombre de la nueva columna donde se almacenara la pk de la tabla master
 	private Ciudadano ciudadano; // esto representa que un empleado tiene un ciudadano
 	
+	
+	
+
 	@Override
 	public String toString() {
-		return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + "]";
+		return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + ", puesto=" + puesto
+				+ "]";
 	}
 
 	// GETTERS y SETTERS

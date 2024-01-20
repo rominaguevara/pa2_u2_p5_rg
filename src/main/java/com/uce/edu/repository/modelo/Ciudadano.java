@@ -30,9 +30,20 @@ public class Ciudadano {
 	@Column(name = "ciud_cedula")
 	private String cedula;
 	
+	@Column(name = "ciud_genero")
+	private String genero;
+	
 
 	@OneToOne(mappedBy = "ciudadano", cascade = CascadeType.ALL)//este empleado se va a mapear con ciudadano (ciudadano es el nnmbre del atributo que tengo en la otra entidad) 
 	private Empleado empleado;// esto está mostrando que un ciudadano tiene un empleado
+	
+	
+
+	@Override
+	public String toString() {
+		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
+				+ ", genero=" + genero + "]";
+	}
 
 	// GETTERS y SETTERS
 	public Integer getId() {

@@ -11,4 +11,6 @@ public interface IAlumnoRepository {
 	public void actualizar(Alumno alumno);
 
 	public void eliminar(Integer id);
+	
+	public Alumno seleccionarPorNombre(String nombre);
 }

@@ -1,5 +1,6 @@
 package com.uce.edu.repository;
 
+
 import com.uce.edu.repository.modelo.Estudiante;
 
 public interface IEstudianteRepository {
@@ -11,4 +12,6 @@ public interface IEstudianteRepository {
 	public void actualizar(Estudiante estudiante);
 
 	public void eliminar(Integer id);
+	
+	public Estudiante seleccionarPorApellido(String apellido);
 }

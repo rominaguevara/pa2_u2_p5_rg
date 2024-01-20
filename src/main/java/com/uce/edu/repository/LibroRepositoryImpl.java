@@ -108,4 +108,21 @@ public class LibroRepositoryImpl implements ILibroRepository {
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public Libro seleccionarEditorial(String editorial) {
+		// TODO Auto-generated method stub
+		TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.editorial = :editorial",
+				Libro.class);
+		myQuery.setParameter("editorial", editorial);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Libro seleccionarEdicion(Integer edicion) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM libro l WHERE l.libr_edicion =:edicion",Libro.class);
+		myQuery.setParameter("edicion", edicion);
+		return (Libro) myQuery.getSingleResult();
+	}
+
 }

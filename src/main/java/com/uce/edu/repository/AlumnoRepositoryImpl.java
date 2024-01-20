@@ -6,6 +6,7 @@ import com.uce.edu.repository.modelo.Alumno;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -39,6 +40,16 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		Alumno alum = this.seleccionar(id);
 		this.entityManager.remove(alum);
 
+	}
+
+	@Override
+	public Alumno seleccionarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		
+		TypedQuery<Alumno> myQuery = this.entityManager
+				.createQuery("SELECT a FROM Alumno a Where a.nombre = :nombre", Alumno.class);
+		myQuery.setParameter("nombre", nombre);
+		return myQuery.getSingleResult();
 	}
 
 }

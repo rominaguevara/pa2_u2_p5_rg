@@ -31,5 +31,7 @@ public interface ILibroRepository {
 	
 	public List<Libro> seleccionarPorFechaNamed(LocalDateTime fechaPublicacion);
 	
+	public Libro seleccionarEditorial(String editorial);
 	
+	public Libro seleccionarEdicion(Integer edicion);
 }

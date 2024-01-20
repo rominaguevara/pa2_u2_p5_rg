@@ -29,4 +29,8 @@ public interface ILibroService {
 	public List<Libro> buscarPorFecha(LocalDateTime fechaPublicacion);
 
 	public List<Libro> buscarPorFechaNamed(LocalDateTime fechaPublicacion);
+	
+	public Libro buscarEditorial(String editorial);
+	
+	public Libro buscarEdicion(Integer edicion);
 }

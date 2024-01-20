@@ -30,9 +30,15 @@ public class Libro {
  
 	@Column(name = "libr_titulo")
 	private String titulo;
+	
+	@Column(name = "libr_editorial")
+	private String editorial;
  
 	@Column(name = "libr_fecha_publicacion")
 	private LocalDateTime fechaPublicacion;
+	
+	@Column(name = "libr_edicion")
+	private Integer edicion ;
  
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "autor_libro",

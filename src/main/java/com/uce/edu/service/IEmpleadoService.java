@@ -16,5 +16,6 @@ public interface IEmpleadoService {
 
 	public Empleado buscarPorPuesto(String puesto);
 	
-	public Empleado buscarPorSalario(BigDecimal salario);
+	public Empleado buscarPorSalario(String puesto, BigDecimal salario);
+	
 }

@@ -28,6 +28,12 @@ public class Estudiante {
 
 	@Column(name = "estu_cedula")
 	private String cedula;
+	
+	@Column(name = "estu_grado")
+	private String grado;
+	
+	@Column(name = "estu_edad")
+	private Integer edad;
 
 	@Column(name = "estu_fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;

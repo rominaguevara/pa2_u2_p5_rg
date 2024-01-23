@@ -33,4 +33,6 @@ public interface ILibroService {
 	public Libro buscarEditorial(String editorial);
 	
 	public Libro buscarEdicion(Integer edicion);
+	
+	public Libro buscarPorEditorial2(String editorial);
 }

@@ -42,4 +42,16 @@ public class EstudianteServiceImpl implements IEstudianteService {
 		return this.estudianteRepository.seleccionarPorApellido(apellido);
 	}
 
+	@Override
+	public Estudiante buscarPorCriteria(String nombre, String apellido, Integer edad) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepository.selecionarPorCriteria(nombre, apellido, edad);
+	}
+
+	@Override
+	public Estudiante buscarPorCriteriaAndOr(String nombre, String apellido, String grado, Integer edad) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepository.selecionarPorCriteriaAndOr(nombre, apellido, grado, edad);
+	}
+
 }

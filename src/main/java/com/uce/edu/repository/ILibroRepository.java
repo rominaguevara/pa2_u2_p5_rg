@@ -34,4 +34,6 @@ public interface ILibroRepository {
 	public Libro seleccionarEditorial(String editorial);
 	
 	public Libro seleccionarEdicion(Integer edicion);
+	
+	public Libro seleccionarPorEditorial2(String editorial);
 }

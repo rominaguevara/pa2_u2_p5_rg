@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.repository.modelo.Libro2;
 
@@ -12,6 +13,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -111,8 +116,8 @@ public class LibroRepositoryImpl implements ILibroRepository {
 	@Override
 	public Libro seleccionarEditorial(String editorial) {
 		// TODO Auto-generated method stub
-		TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.editorial = :editorial",
-				Libro.class);
+		TypedQuery<Libro> myQuery = this.entityManager
+				.createQuery("SELECT l FROM Libro l WHERE l.editorial = :editorial", Libro.class);
 		myQuery.setParameter("editorial", editorial);
 		return myQuery.getSingleResult();
 	}
@@ -120,9 +125,40 @@ public class LibroRepositoryImpl implements ILibroRepository {
 	@Override
 	public Libro seleccionarEdicion(Integer edicion) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM libro l WHERE l.libr_edicion =:edicion",Libro.class);
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM libro l WHERE l.libr_edicion =:edicion",
+				Libro.class);
 		myQuery.setParameter("edicion", edicion);
 		return (Libro) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Libro seleccionarPorEditorial2(String editorial) {
+		// TODO Auto-generated method stub
+		// 0.Creamos una instancia de la interfaz CriteriaBuilder a partir de un Entity
+		// Manager
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+
+		// 1.-Determianmos el tipo de retorno que va a tener mi Consulta
+		CriteriaQuery<Libro> myCriteriaQuery = myCriteriaBuilder.createQuery(Libro.class);
+
+		// 2.-Construir el SQL
+		// 2.1 Determinamos elfrom utilizando una interfaz conocida como (Root)
+		// Nota: no necesariamnete el from es igual al tipo de retorno
+		// SELECT c.empleado FROM Ciudadano c WHERE c.empleado.nombre = :dato
+		Root<Libro> myFrom = myCriteriaQuery.from(Libro.class);// FROM Ciudadano
+
+		// 2.2 Construir las condiciones (WHERE) del SQL
+		// En criteria API Query las condiciones se las conoce como "Predicate" en
+		// español como Predicado
+		Predicate condicionEditorial = myCriteriaBuilder.equal(myFrom.get("editorial"), editorial);
+
+		// 3. Construimos el SQL final
+		myCriteriaQuery.select(myFrom).where(condicionEditorial);
+
+		// 4. Ejecutamos la consulta con un TypedQuery
+		TypedQuery<Libro> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
 	}
 
 }

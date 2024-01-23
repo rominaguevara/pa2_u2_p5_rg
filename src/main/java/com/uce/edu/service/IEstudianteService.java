@@ -11,6 +11,10 @@ public interface IEstudianteService {
 	public void actualizar(Estudiante estudiante);
 
 	public void eliminar(Integer id);
-	
+
 	public Estudiante buscarPorApellido(String apellido);
+
+	public Estudiante buscarPorCriteria(String nombre, String apellido, Integer edad);
+
+	public Estudiante buscarPorCriteriaAndOr(String nombre, String apellido, String grado, Integer edad);
 }

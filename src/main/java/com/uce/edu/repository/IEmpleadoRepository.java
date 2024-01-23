@@ -16,6 +16,6 @@ public interface IEmpleadoRepository {
 	
 	public Empleado selecionarPorPuesto(String puesto);
 	
-	public Empleado seleccionarPorSalario(BigDecimal salario);
+	public Empleado seleccionarPorSalario(String puesto, BigDecimal salario);
 
 }

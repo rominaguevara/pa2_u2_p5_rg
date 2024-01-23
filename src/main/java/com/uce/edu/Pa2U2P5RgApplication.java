@@ -33,31 +33,16 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	// Declarar de una manera centralizada el query y se va a reutilizar desde las
 	// diferentes partes que se necesita a traves de un nombre
 	//
-	// 2.Native (es usar el SQLnativo del SQL, el mismo que ejecuto en la base de datos)
-	//	este uso cuando quiero que el rendimiento prevalesca ante la orientación a objetos
+	// 2.Native (es usar el SQLnativo del SQL, el mismo que ejecuto en la base de
+	// datos)
+	// este uso cuando quiero que el rendimiento prevalesca ante la orientación a
+	// objetos
 	// 3.Criteria API
+	// ya que el SQL se construye utilizando métodos
 
 	@Autowired
 	private ICiudadanoService ciudadanoService;
-	
-	@Autowired
-	private IEmpleadoService empleadoService;
 
-	@Autowired
-	private IAlumnoService iAlumnoService;
-	
-	@Autowired
-	private IAutorService iAutorService;
-	
-	@Autowired
-	private IEstudianteService estudianteService;
-	
-	@Autowired
-	private ILibroService iLibroService;
-
-	@Autowired
-	private IHotelService iHotelService;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5RgApplication.class, args);
 	}
@@ -65,50 +50,38 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-	
-		System.out.println("------------------------------------------");
-		System.out.println("TYPED");
-		System.out.println("------------------------------------------");
-		
-		System.out.println("\n");
-		Alumno alum = this.iAlumnoService.buscarPorNombre("Luis");
-		System.out.println(alum);
-		
-		Autor aut = this.iAutorService.buscarPorNacionalidad("Francia");
-		System.out.println(aut);
-		
-		Ciudadano ciud = this.ciudadanoService.buscarPorApellido("Rivera");
-		System.out.println(ciud);
-		
-		Estudiante estu = this.estudianteService.buscarPorApellido("Rodriguez");
-		System.out.println(estu);
-		
-		Libro lib = this.iLibroService.buscarEditorial("Norma");
-		System.out.println(lib);
-		
-		System.out.println("\n");
-		
-		System.out.println("------------------------------------------");
-		System.out.println("NATIVE");
-		System.out.println("------------------------------------------");
-		
-		System.out.println("\n");
-		Hotel hot = this.iHotelService.buscarPorDireccion("Colon");
-		System.out.println(hot);
-		
-		Ciudadano ciuda = this.ciudadanoService.buscarPorGenero("femenino");
-		System.out.println(ciuda);
 
-		Empleado emple = this.empleadoService.buscarPorPuesto("gerente");
-		System.out.println(emple);
+		// Criteria API Query
+
+		Ciudadano ciu = this.ciudadanoService.buscarPorApellido("Rivera");
+		System.out.println(ciu);
+
+		// Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_genero,c1_0.ciud_nombre 
+		//from ciudadano c1_0 where c1_0.ciud_nombre=?
+		Ciudadano ciu1 = this.ciudadanoService.buscarrPorCriteria("Romina", "Guevara", "1750888404");
+		System.out.println(ciu1);
 		
-		Empleado emplea = this.empleadoService.buscarPorSalario(new BigDecimal(1500));
-		System.out.println(emplea);
+		//Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_genero,c1_0.ciud_nombre 
+		//from ciudadano c1_0 where c1_0.ciud_apellido=?
+		Ciudadano ciu2 = this.ciudadanoService.buscarrPorCriteria("André", "Rivera", "0588888888");
+		System.out.println(ciu2);
+
+		//Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_genero,c1_0.ciud_nombre
+		//from ciudadano c1_0 where c1_0.ciud_cedula=?
+		Ciudadano ciu3 = this.ciudadanoService.buscarrPorCriteria("Romina", "Guevara", "1750888404");
+		System.out.println(ciu3);
+	
+		//Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_genero,c1_0.ciud_nombre 
+		//from ciudadano c1_0 where c1_0.ciud_nombre=? or c1_0.ciud_apellido=?
+		Ciudadano ciu4 = this.ciudadanoService.buscarPorCriteriaAndOr("Romina", "Guevara", "1750888404");
+		System.out.println(ciu4);
 		
-		Libro libro = this.iLibroService.buscarEdicion(1);
-		System.out.println(libro);
-		System.out.println("\n");
 		
-		
+		//Hibernate: select c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_genero,c1_0.ciud_nombre from 
+		//ciudadano c1_0 where c1_0.ciud_nombre=? and c1_0.ciud_apellido=?
+		Ciudadano ciu5 = this.ciudadanoService.buscarPorCriteriaAndOr("André", "Rivera", "0550888404");
+		System.out.println(ciu5);
+	
+	
 	}
 }

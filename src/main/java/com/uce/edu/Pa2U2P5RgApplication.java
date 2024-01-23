@@ -70,7 +70,6 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		System.out.println("TYPED");
 		System.out.println("------------------------------------------");
 		
-		System.out.println("\n");
 		Alumno alum = this.iAlumnoService.buscarPorNombre("Luis");
 		System.out.println(alum);
 		
@@ -85,14 +84,11 @@ public class Pa2U2P5RgApplication implements CommandLineRunner {
 		
 		Libro lib = this.iLibroService.buscarEditorial("Norma");
 		System.out.println(lib);
-		
-		System.out.println("\n");
-		
+				
 		System.out.println("------------------------------------------");
 		System.out.println("NATIVE");
 		System.out.println("------------------------------------------");
 		
-		System.out.println("\n");
 		Hotel hot = this.iHotelService.buscarPorDireccion("Colon");
 		System.out.println(hot);
 		
